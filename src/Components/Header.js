@@ -34,17 +34,29 @@ class Header extends Component {
             </div>
             <ul className="social">
               <li>
-                <a href={github} className="button btn github-btn">
+                <a
+                  href="https://github.com/pablonm3"
+                  target="_blank"
+                  className="button btn github-btn"
+                >
                   <i className="fa fa-github"></i>Github
                 </a>
               </li>
               <li>
-                <a href={github} className="button btn github-btn">
+                <a
+                  href="https://www.linkedin.com/in/pablonm/"
+                  target="_blank"
+                  className="button btn github-btn"
+                >
                   <i className="fa fa-linkedin"></i>Linkedin
                 </a>
               </li>
               <li>
-                <a href={github} className="button btn github-btn">
+                <a
+                  href="/resume.pdf"
+                  target="_blank"
+                  className="button btn github-btn"
+                >
                   <i className="fa fa-file"></i>Resume
                 </a>
               </li>
