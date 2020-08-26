@@ -1,23 +1,39 @@
 import React, { Component } from 'react';
 import ParticlesBg from 'particles-bg';
+import { Widget, addResponseMessage } from 'react-chat-widget';
+import 'react-chat-widget/lib/styles.css';
+const axios = require('axios');
 
 class Header extends Component {
+  constructor(props) {
+    super(props);
+    addResponseMessage(
+      'Welcome to my AI powered chatbot, use it to ask questions about myself'
+    );
+    addResponseMessage(
+      'DISCLAIMER: even though this chatbot sometimes responds with real information about myself, it was also trained with data from the internet, In no case should inappropriate content generated as a result of using it be construed to reflect the views or values of myself, it is merely a research/academic project'
+    );
+  }
+
+  handleNewUserMessage(newMessage) {
+    console.log(`New message incoming! ${newMessage}`);
+    axios
+      .post('http://167.172.135.18:80', { msg: newMessage })
+      .then(function (response) {
+        // handle success
+        console.log('response from chatbot API: ', response);
+        addResponseMessage(response.data);
+      })
+      .catch(function (error) {
+        // handle error
+        console.error(error);
+      });
+    // Now send the message throught the backend API
+  }
+
   render() {
     if (this.props.data) {
-      var project = this.props.data.project;
-      var github = this.props.data.github;
       var name = this.props.data.name;
-      var description = this.props.data.description;
-      var city = this.props.data.address.city;
-      var networks = this.props.data.social.map(function (network) {
-        return (
-          <li key={network.name}>
-            <a href={network.url}>
-              <i className={network.className}></i>
-            </a>
-          </li>
-        );
-      });
     }
 
     return (
@@ -73,6 +89,12 @@ class Header extends Component {
             Argentina.
           </h3>
         </div>
+        <Widget
+          profileAvatar="/images/pablo.jpeg"
+          title="Pablo Bot"
+          subtitle="AI Powered chatbot"
+          handleNewUserMessage={this.handleNewUserMessage}
+        />
         <ParticlesBg className="particlesBg" type="circle" bg={true} />
       </div>
     );
