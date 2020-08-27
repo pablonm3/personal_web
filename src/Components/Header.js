@@ -18,7 +18,7 @@ class Header extends Component {
   handleNewUserMessage(newMessage) {
     console.log(`New message incoming! ${newMessage}`);
     axios
-      .post('http://167.172.135.18:80', { msg: newMessage })
+      .post('https://api.pablomarino.me', { msg: newMessage })
       .then(function (response) {
         // handle success
         console.log('response from chatbot API: ', response);
