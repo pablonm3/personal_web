@@ -43,7 +43,7 @@ class Header extends Component {
             <img
               role="presentation"
               className="img-circle center-block"
-              src="/images/pablo.jpeg"
+              src="/images/pablo_professional.jpg"
               width="150"
             />
           </div>
